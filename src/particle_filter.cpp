@@ -10,8 +10,8 @@
 int main(int argc, char** argv){
 
 	int time_stamp = 0;	
-	cv::Mat map_image = cv::Mat::zeros(800, 800, CV_8UC1);
-	cv::Mat output_image = cv::Mat::zeros(800, 800, CV_8UC1);
+	cv::Mat map_image = cv::Mat::zeros(kMapX, kMapY, CV_8UC1);
+	cv::Mat output_image = cv::Mat::zeros(kMapX, kMapY, CV_8UC1);
 	
 	if(argc < 3){
 		std::cout<< "Please specify map data and log file..." << std::endl;
@@ -23,7 +23,7 @@ int main(int argc, char** argv){
 
 	// initialize matrix/vector for structs
 	// using a matrix to represent the global map
-	Eigen::MatrixXd global_map = Eigen::MatrixXd::Zero(800, 800);
+	Eigen::MatrixXd global_map = Eigen::MatrixXd::Zero(kMapX, kMapY);
 	std::vector<Eigen::Vector2d> free_space;
 	Eigen::MatrixXd particles = Eigen::MatrixXd::Zero(kSampleNum, 3);
 	Eigen::MatrixXd sigma = Eigen::MatrixXd::Zero(kSampleNum, 2);
@@ -283,7 +283,7 @@ void calculateLoss(const int& par_idx, double& result, const Eigen::VectorXd& la
     	double ray_y = single_particle(1);
     	double ray_len = 0.0;
 
-    	while (ray_x >= 0 && ray_x < 800 && ray_y >=0 && ray_y < 800) {
+    	while (ray_x >= 0 && ray_x < kMapX && ray_y >=0 && ray_y < kMapY) {
         	if (map->global_map_((int)ray_x, (int)ray_y) < 0.1) {
             	break;
         	} else {
