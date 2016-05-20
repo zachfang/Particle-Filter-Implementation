@@ -12,7 +12,7 @@ int main(int argc, char** argv){
 	int time_stamp = 0;	
 	cv::Mat map_image = cv::Mat::zeros(kMapX, kMapY, CV_8UC1);
 	cv::Mat output_image = cv::Mat::zeros(kMapX, kMapY, CV_8UC1);
-	
+    std::cout<< "test2" << std::endl;	
 	if(argc < 3){
 		std::cout<< "Please specify map data and log file..." << std::endl;
 		return -1;
